@@ -7,29 +7,29 @@
     <meta name="format-detection" content="telephone=no">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
-    
+
     <title>企业介绍企业宣传</title>
-    <link href="../Content/lib/Animate/animate.min.css" rel="stylesheet" /> 
+    <link href="../Content/lib/Animate/animate.min.css" rel="stylesheet" />
+    <link href="../Content/lib/Swiper/css/swiper.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/temp.css">
     <script src="../Content/Scripts/Common.js"></script>
     <script src="../Content/lib/Jquery/jquery-1.10.2.min.js"></script>
+    <script src="../Content/lib/Swiper/js/swiper.js"></script>
+    <script src="../Content/lib/Swiper/js/swiper.animate.min.js"></script>
     <script>
         window.onload = function () {
-
             var vAnimar = new Tools.Animals({ filter: ".maka-page.maka-page-0" });
-
             //开始执行
             vAnimar.Start();
-
         }
     </script>
 </head>
 
 <body>
-    <div class="maka-canvas">
+    <div class="swiper-container">
         <!--所有page的页面-->
-        <div class="maka-pages" id="maka-pages">
-            <!-- <section class="swiper-slide container maka-page maka-page-0">
+        <div class="swiper-wrapper">
+            <section class="swiper-slide maka-page-0">
                 <div class="page-bg-0">
                 <img src="images/page-bg-0.src" class="ig"></div>
                 <div class="maka-eleCanvas maka-eleCanvas-0">
@@ -68,12 +68,11 @@
                         <div class="fa-an-l" data-animal="{animal:[{name:'fadeInRight',delay:1,duration:1.6}]}" >江晓阳</div>
                     </div>
                 </div>
-            </section> -->
-            <!--<section class="swiper-slide container maka-page maka-page-1">
+            </section>
+            <section class="swiper-slide maka-page-1">
                 <div class="page-bg-1"></div>
                 <div class="maka-eleCanvas maka-eleCanvas-1">
                         <div class="tw-a" data-animal="{animal:[{names:'fadeInNormal 1000ms ease 600ms both paused'}]}"></div>
-                    </div>
                     <div class="tw-0">
                         <div class="tw-b" data-animal="{animal:[{names:'fadeInLeft 2000ms ease 1200ms both paused'}]}"></div>
                     </div>
@@ -168,8 +167,8 @@
                         <div class="tw-hh" data-animal="{animal:[{names:'rotateInDownLeft 1000ms ease 2800ms both running'}]}">这里可以填写你的公司简介内容，模版是蓝色系主色调，简约而不简单，模版还可以调成其它色调，例如：红色，橙色等。如果有疑问可咨询（hhq-668).了解更多模版内容</div>
                     </div>
                 </div>
-            </section>-->
-            <!--<section class="maka-page maka-page-2">
+            </section>
+            <section class="swiper-slide maka-page-2">
                 <div class="page-bg-2"></div>
                 <div class="maka-eleCanvas maka-eleCanvas-2">
                     <div class="s-0">
@@ -215,10 +214,10 @@
                         <div class="s-v" data-animal="{animal:[{names:'fadeInRight 1000ms ease 2200ms both running'}]}">2015年10月1日 公司正式成为上市公司</div>
                     </div>
                 </div>
-            </section> -->
-            <!-- <section class="maka-page maka-page-3">
+            </section>
+            <section class="swiper-slide maka-page-3">
                 <div class="page-bg-3">
-                <img src="images/0a_90Q.src" style="position: absolute; width: 423.492px; height: 667px; top: 0px; left: 0px; -webkit-user-drag: none; user-select: none; opacity: 1;">
+                  <img src="images/0a_90Q.src" style="position: absolute; width: 423.492px; height: 667px; top: 0px; left: 0px; -webkit-user-drag: none; user-select: none; opacity: 1;">
                 </div>
                 <div class="maka-eleCanvas maka-eleCanvas-3">
                     <div class="f-0">
@@ -270,8 +269,8 @@
                         <div class="f-v" data-animal="{animal:[{names:'zoomIn 1000ms ease 2300ms both running'}]}">年度先进单位</div>
                     </div>
                 </div>
-            </section> --> 
-            <section class="maka-page maka-page-4">
+            </section>
+            <section class="swiper-slide maka-page-4">
                 <div class="page-bg-4"></div>
                 <div class="maka-eleCanvas maka-eleCanvas-4">
                     <div class="l-0">
@@ -309,6 +308,35 @@
             <img src="images/up-dow.png">
         </div>
     </div>
+    <script type = "text/javascript">
+    scaleW=window.innerWidth/320;
+    scaleH=window.innerHeight/480;
+    var resizes = document.querySelectorAll('.resize');
+              for (var j=0; j<resizes.length; j++) {
+               resizes[j].style.width=parseInt(resizes[j].style.width)*scaleW+'px';
+           resizes[j].style.height=parseInt(resizes[j].style.height)*scaleH+'px';
+           resizes[j].style.top=parseInt(resizes[j].style.top)*scaleH+'px';
+           resizes[j].style.left=parseInt(resizes[j].style.left)*scaleW+'px';
+
+              }
+    var scales = document.querySelectorAll('.txt');
+    for (var i=0; i<scales.length; i++) {
+      ss=scales[i].style;
+      ss.webkitTransform = ss.MsTransform = ss.msTransform = ss.MozTransform = ss.OTransform =ss.transform='translateX('+scales[i].offsetWidth*(scaleW-1)/2+'px) translateY('+scales[i].offsetHeight*(scaleH-1)/2+'px)scaleX('+scaleW+') scaleY('+scaleH+') ';
+    }
+      var mySwiper = new Swiper ('.swiper-container', {
+       direction : 'vertical',
+       pagination: '.swiper-pagination',
+       mousewheelControl : true,
+       onInit: function(swiper){
+       swiperAnimateCache(swiper);
+       swiperAnimate(swiper);
+        },
+       onSlideChangeEnd: function(swiper){
+      swiperAnimate(swiper);
+        }
+         })
+    </script>
 </body>
 
 </html>
