@@ -1,0 +1,50 @@
+在标签属性上加上  data-animal 属性  如：<div data-animal="{id:'animal-id-1',animal:[{name:'slideInDown infinite',delay:0.2,duration:1.4}],animalend:[{id:'animal-id-2',sort:1}],animalsort:1}"></div>
+
+
+说明
+{
+  id:'animal-id-1', //标签ID 若未赋值程序加载时会自动赋值 (可不填)
+  animalsort:0,    //标签动画加载顺序，可以不赋值，若未赋值程序加载时按标签顺序自动赋值（没太大作用） (可不填)
+  val:'hello',     //加载动画时 给当前标签赋值 (可不填)
+  valAttr:'text', //给当前标签哪个属性赋值 可填值为 text(文本-默认)/src(图片路径)/backgroundImg(背景图片) (可不填)
+  style:'color:red;font-size:16px;', //运行动画时给当前标签添加的样式
+  animal:     //该标签运行的动画集合
+  [
+   {
+     name:'swing', //动画名称 对于animal.css
+     delay:1.2,    //动画延迟多长时间运行 单位秒 (可不填)
+     duration:1.4, //动画运行多长时间 单位秒 (可不填)
+     sort:0        //该动画在该集合中运行的顺序 (可不填)
+    },
+    {
+     name:'slideInDown infinite',  // infinite 为该动画重复运行
+     delay:1.2,
+     duration:1.4,
+     sort:1
+     }
+  ],
+  animalend: //当前动画运行完成后 需要衔接着运行的标签的动画 (可不填)
+  [
+   {
+     id:'animal-id-2', //下一次运行动画的标签ID （如该标签中animalend也包含 animal-id-1 则该两个标签动画将持续运行）
+     sort:0            //在该集合中运行的顺序 (可不填)
+    }，
+   {
+     id:'animal-id-3', //下下一次运行动画的标签ID
+     sort:1            //在该集合中运行的顺序 (可不填)
+    }
+  ] 
+}
+
+
+
+
+//javascript 调用
+
+var vAnimar = new Tools.Animals({ filters: [".maka-page.maka-page-1",".maka-page.maka-page-2",".maka-page.maka-page-3"] });
+
+//执行动画
+vAnimar.Start(".maka-page.maka-page-1");
+
+filters:为jquer选择器 表示当前需要哪个page需要运行的动画
+
